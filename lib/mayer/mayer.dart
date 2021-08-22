@@ -43,6 +43,11 @@ class _MayerPageState extends State<MayerPage> {
             setState(() {
               state = States.hidden;
             });
+          }),
+          _mayerOutlinedButton(topText: "Rul igen",bottomText: "Der var nogen som drak, og nu starter en ny runde", onPressed: (){
+            setState(() {
+              rollDice();
+            });
           })
         ];
         break;
