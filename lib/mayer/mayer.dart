@@ -34,18 +34,30 @@ class _MayerPageState extends State<MayerPage> {
       case States.shown:
         output = n2 > n1 ? "$n2$n1" : "$n1$n2";
         buttons = [
-          _mayerOutlinedButton(topText: "Gem tallene", bottomText: "Du har slået det samme eller over det du har modtaget", onPressed: (){
+          _mayerOutlinedButton(
+            topText: "Gem tallene", 
+            bottomText: "Du har slået det samme eller over det du har modtaget", 
+            suffix: Text("🔒"),
+            onPressed: (){
             setState(() {
               state = States.hidden;
             });
           }),
-          _mayerOutlinedButton(topText: "Gem tallene og rul igen",bottomText: "Du kunne ikke slå højere end det du har fået", onPressed: (){
+          _mayerOutlinedButton(
+            topText: "Gem tallene og rul igen",
+            bottomText: "Du kunne ikke slå højere end det du har fået", 
+            suffix: Text("🔒🎲"),
+            onPressed: (){
             rollDice();
             setState(() {
               state = States.hidden;
             });
           }),
-          _mayerOutlinedButton(topText: "Rul igen",bottomText: "Der var nogen som drak, og nu starter en ny runde", onPressed: (){
+          _mayerOutlinedButton(
+            topText: "Rul igen",
+            bottomText: "Der var nogen som drak, og nu starter en ny runde", 
+            suffix: Text("🎲"),
+            onPressed: (){
             setState(() {
               rollDice();
             });
@@ -55,12 +67,20 @@ class _MayerPageState extends State<MayerPage> {
       case States.hidden:
         output = "??";
         buttons = [
-          _mayerOutlinedButton(topText: "Vis tallene",bottomText: "Du tror ikke på ham", onPressed: (){
+          _mayerOutlinedButton(
+            topText: "Vis tallene",
+            bottomText: "Du tror ikke på ham", 
+            suffix: Text("👀"),
+            onPressed: (){
             setState(() {
               state = States.shown;
             });
           }),
-          _mayerOutlinedButton(topText: "Rul igen og vis tallene", bottomText: "Du tror på ham / du kan slå højere", onPressed: (){
+          _mayerOutlinedButton(
+            topText: "Rul igen og vis tallene", 
+            bottomText: "Du tror på ham / du kan slå højere", 
+            suffix: Text("🎲👀"),
+            onPressed: (){
             rollDice();
             setState(() {
               state = States.shown;
@@ -69,6 +89,16 @@ class _MayerPageState extends State<MayerPage> {
         ];
         break;
       default:
+        buttons = [
+          CustomOutlinedButton(text: "Stik mig nogle tal", onPressed: () {
+            rollDice();
+            setState(() {
+              output = "00";
+              state = States.shown;
+            });
+          })
+        ];
+        break;
     }
     return Scaffold(
       body: SingleChildScrollView(
@@ -183,7 +213,7 @@ class _MayerPageState extends State<MayerPage> {
     );
   }
 
-  Widget _mayerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed}){
+  Widget _mayerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed, Widget? suffix}){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: OutlinedButton(
@@ -197,7 +227,8 @@ class _MayerPageState extends State<MayerPage> {
         child: SafeArea(
           child: ListTile(
             title: Text(topText, style: TextStyle(color: Colors.white)),
-            subtitle: Text(bottomText, style: TextStyle(color: Colors.grey))
+            subtitle: Text(bottomText, style: TextStyle(color: Colors.grey)),
+            trailing: suffix,
           ),
         ),
         onPressed: onPressed,
@@ -206,7 +237,6 @@ class _MayerPageState extends State<MayerPage> {
   }
 }
 enum States{
-  initial,
   shown,
   hidden,
 }
