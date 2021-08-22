@@ -100,23 +100,30 @@ class _MayerPageState extends State<MayerPage> {
         ];
         break;
     }
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          minimum: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              Center(child: Text("Mayer", style: TextStyle(fontSize: 35))),
-              SizedBox(height: 60),
-              Center(child: 
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 80),
-                  child: Text(output, style: TextStyle(fontSize: 35)),
-                )
+
+    return WillPopScope(
+      onWillPop: () => showExitPopup(),
+      child: GestureDetector(
+        onTap: () => focusNode.unfocus(),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: SafeArea(
+              minimum: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Center(child: Text("Mayer", style: TextStyle(fontSize: 35))),
+                  SizedBox(height: 60),
+                  Center(child: 
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 80),
+                      child: Text(output, style: TextStyle(fontSize: 35)),
+                    )
+                  ),
+                  Column(children: buttons),
+                  players(),
+                ],
               ),
-              Column(children: buttons),
-              players()
-            ],
+            ),
           ),
         ),
       ),
@@ -137,6 +144,28 @@ class _MayerPageState extends State<MayerPage> {
       focusNode.requestFocus();
     }
   }
+
+  Future<bool> showExitPopup() async {
+    return await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text('Er du sikker?'),
+        content: Text('Spillet vil blive nulstillet. Alle navne og liv skal tilføjes forfra.'),
+        actions:[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text('Naj', style: TextStyle(color: Theme.of(context).accentColor)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text('Jae', style: TextStyle(color: Theme.of(context).accentColor)),
+          ),
+        ],
+      ),
+    ) ?? false;
+  }
+
   Widget players(){
     
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
