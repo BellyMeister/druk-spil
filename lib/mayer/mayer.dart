@@ -11,6 +11,40 @@ class _MayerPageState extends State<MayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+  Widget players(){
+    
+    List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
+
+    TextEditingController controller = TextEditingController();
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                maxLines: 1,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: "Skriv spillerens navn",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  fillColor: Colors.white
+                ),
+                controller: controller,
+                onSubmitted: (_){
+                  if(controller.text != ""){
+                    setState(() {
+                      playersList.add(Player(name: controller.text));
+                    });
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+        Column(children: widgets,)
+      ],
+    );
+  }
 
   Widget playerWidget(Player player){
     return Row(
