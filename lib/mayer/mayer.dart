@@ -171,13 +171,12 @@ class _MayerPageState extends State<MayerPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: OutlinedButton(
-        style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 75)),
-          backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          side: MaterialStateProperty.all<BorderSide>(BorderSide(color: Theme.of(context).accentColor, width: 4)),
-          textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(fontSize: 20)),
-          
+        style: OutlinedButton.styleFrom(
+          primary: Theme.of(context).accentColor,
+          minimumSize: Size(double.infinity, 75),
+          backgroundColor: Theme.of(context).primaryColor,
+          side: BorderSide(color: Theme.of(context).accentColor, width: 4),
+          textStyle: TextStyle(fontSize: 20),
         ),
         child: SafeArea(
           child: ListTile(
