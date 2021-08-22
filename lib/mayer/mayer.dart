@@ -103,6 +103,7 @@ class _MayerPageState extends State<MayerPage> {
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
 
     TextEditingController controller = TextEditingController();
+    FocusNode _focusNode = FocusNode();
     return Column(
       children: [
         Row(
@@ -112,16 +113,19 @@ class _MayerPageState extends State<MayerPage> {
                 maxLines: 1,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: "Skriv spillerens navn",
+                  hintText: "Tryk for at tilføje spiller",
                   hintStyle: TextStyle(color: Colors.grey),
                   fillColor: Colors.white
                 ),
                 controller: controller,
+                focusNode: _focusNode,
                 onSubmitted: (_){
                   if(controller.text != ""){
                     setState(() {
-                      playersList.add(Player(name: controller.text));
+                      playersList.insert(0, Player(name: controller.text));
                     });
+                    controller.clear();
+                    _focusNode.requestFocus();
                   }
                 },
               ),
