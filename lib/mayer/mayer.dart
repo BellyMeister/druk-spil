@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:druk_spil/components/outlined_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MayerPage extends StatefulWidget {
   const MayerPage({ Key? key }) : super(key: key);
@@ -15,7 +16,7 @@ class _MayerPageState extends State<MayerPage> {
   int n2 = 0;
   String output = "00";
   List<Widget> buttons = [];
-  States state = States.initial;
+  States? state;
   List<Player> playersList = [];
   TextEditingController controller = TextEditingController();
   FocusNode focusNode = FocusNode();
@@ -26,17 +27,6 @@ class _MayerPageState extends State<MayerPage> {
     if(MediaQuery.of(context).viewInsets.bottom == 0) focusNode.unfocus();
 
     switch (state) {
-      case States.initial:
-        buttons = [
-          CustomOutlinedButton(text: "Stik mig nogle tal", onPressed: () {
-            rollDice();
-            setState(() {
-              output = "00";
-              state = States.shown;
-            });
-          })
-        ];
-        break;
       case States.shown:
         output = n2 > n1 ? "$n2$n1" : "$n1$n2";
         buttons = [
