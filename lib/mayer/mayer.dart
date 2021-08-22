@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:druk_spil/components/outlined_button.dart';
 import 'package:flutter/material.dart';
 
 class MayerPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _MayerPageState extends State<MayerPage> {
     switch (state) {
       case States.initial:
         buttons = [
-          _mayerOutlinedButton(topText: "Stik mig nogle tal", onPressed: () {
+          CustomOutlinedButton(text: "Stik mig nogle tal", onPressed: () {
             rollDice();
             setState(() {
               output = "00";
