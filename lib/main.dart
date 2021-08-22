@@ -19,6 +19,7 @@ class App extends StatelessWidget {
         scaffoldBackgroundColor: HexColor.fromHex("#0D0106"),
         textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white))
       ),
+    home: LandingPage(),
     );
   }
 }
