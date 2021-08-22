@@ -128,6 +128,15 @@ class _MayerPageState extends State<MayerPage> {
     n2 = rng.nextInt(6) + 1;
   }
 
+  void addPlayer(){
+    if(controller.text != "") {
+      setState(() {
+        playersList.insert((0), Player(name: controller.text));
+      });
+      controller.clear();
+      focusNode.requestFocus();
+    }
+  }
   Widget players(){
     
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
@@ -142,16 +151,25 @@ class _MayerPageState extends State<MayerPage> {
               child: TextField(
                 maxLines: 1,
                 style: TextStyle(color: Colors.white),
+                textCapitalization: TextCapitalization.sentences,
+                cursorColor: Theme.of(context).accentColor,
                 decoration: InputDecoration(
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
                   hintText: "Tryk for at tilføje spiller",
                   hintStyle: TextStyle(color: Colors.grey),
-                  fillColor: Colors.white
+                  fillColor: Colors.white,
+                  suffix: IconButton(
+                    icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                    onPressed: () => addPlayer(),
+                  )
                 ),
                 controller: controller,
-                focusNode: _focusNode,
-                onSubmitted: (_){
-                  if(controller.text != ""){
-                    setState(() {
+                focusNode: focusNode,
+                onSubmitted: (_) => addPlayer(),
+              ),
+            ),
+          ],
+        ),
                       playersList.insert(0, Player(name: controller.text));
                     });
                     controller.clear();
