@@ -1,18 +1,17 @@
 import 'package:druk_spil/components/outlined_button.dart';
 import 'package:druk_spil/mayer/mayer.dart';
-
 import 'extensions.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Druk Spil',
       theme: ThemeData(
         primaryColor: HexColor.fromHex("#0D0106"),
         accentColor: HexColor.fromHex("#ED217C"),
@@ -20,21 +19,18 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: HexColor.fromHex("#0D0106"),
         textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white))
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+class LandingPage extends StatefulWidget {
+  LandingPage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _LandingPageState createState() => _LandingPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
