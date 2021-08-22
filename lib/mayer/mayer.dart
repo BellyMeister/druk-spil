@@ -8,9 +8,68 @@ class MayerPage extends StatefulWidget {
 }
 
 class _MayerPageState extends State<MayerPage> {
+  Random rng = Random();
+  int n1 = 0;
+  int n2 = 0;
+  String output = "00";
+  List<Widget> buttons = [];
+  States state = States.initial;
+  List<Player> playersList = [];
   @override
   Widget build(BuildContext context) {
+    switch (state) {
+      case States.initial:
+        buttons = [
+          _mayerOutlinedButton(topText: "Stik mig nogle tal", onPressed: () {
+            rollDice();
+            setState(() {
+              output = "00";
+              state = States.shown;
+            });
+          })
+        ];
+        break;
+      case States.shown:
+        output = n2 > n1 ? "$n2$n1" : "$n1$n2";
+        buttons = [
+          _mayerOutlinedButton(topText: "Gem tallene", bottomText: "Du har slået det samme eller over det du har modtaget", onPressed: (){
+            setState(() {
+              state = States.hidden;
+            });
+          }),
+          _mayerOutlinedButton(topText: "Gem tallene og rul igen",bottomText: "Du kunne ikke slå højere end det du har fået", onPressed: (){
+            rollDice();
+            setState(() {
+              state = States.hidden;
+            });
+          })
+        ];
+        break;
+      case States.hidden:
+        output = "??";
+        buttons = [
+          _mayerOutlinedButton(topText: "Vis tallene",bottomText: "Du tror ikke på ham", onPressed: (){
+            setState(() {
+              state = States.shown;
+            });
+          }),
+          _mayerOutlinedButton(topText: "Rul igen og vis tallene", bottomText: "Du tror på ham / du kan slå højere", onPressed: (){
+            rollDice();
+            setState(() {
+              state = States.shown;
+            });
+          })
+        ];
+        break;
+      default:
+    }
     return Scaffold(
+
+  void rollDice(){
+    n1 = rng.nextInt(6) + 1;
+    n2 = rng.nextInt(6) + 1;
+  }
+
   Widget players(){
     
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
@@ -108,6 +167,11 @@ class _MayerPageState extends State<MayerPage> {
       ),
     );
   }
+}
+enum States{
+  initial,
+  shown,
+  hidden,
 }
 
 class Player {
