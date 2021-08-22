@@ -17,8 +17,14 @@ class _MayerPageState extends State<MayerPage> {
   List<Widget> buttons = [];
   States state = States.initial;
   List<Player> playersList = [];
+  TextEditingController controller = TextEditingController();
+  FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
+
+    if(MediaQuery.of(context).viewInsets.bottom == 0) focusNode.unfocus();
+
     switch (state) {
       case States.initial:
         buttons = [
@@ -167,11 +173,8 @@ class _MayerPageState extends State<MayerPage> {
   }
 
   Widget players(){
-    
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
 
-    TextEditingController controller = TextEditingController();
-    FocusNode _focusNode = FocusNode();
     return Column(
       children: [
         Padding(
