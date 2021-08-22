@@ -157,6 +157,12 @@ class _MayerPageState extends State<MayerPage> {
                   onPressed: () {
                     setState(() {
                       if(player.nLives > 0) player.nLives -= 1;
+                      if(player.nLives == 0){
+                        setState(() {
+                          playersList.remove(player);
+                          playersList.add(player);
+                        });
+                      } 
                     });
                   }, 
                 ),
