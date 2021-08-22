@@ -109,3 +109,10 @@ class _MayerPageState extends State<MayerPage> {
     );
   }
 }
+
+class Player {
+  final String name;
+  int nLives = 6;
+
+  Player({required this.name});
+}
