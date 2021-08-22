@@ -17,7 +17,13 @@ class App extends StatelessWidget {
         accentColor: HexColor.fromHex("#ED217C"),
         backgroundColor: HexColor.fromHex("#0D0106"),
         scaffoldBackgroundColor: HexColor.fromHex("#0D0106"),
-        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white), button: TextStyle(color: Colors.white))
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.white), 
+          button: TextStyle(color: Colors.white),
+          headline6: TextStyle(color: Colors.white),
+          subtitle2: TextStyle(color: Colors.grey), 
+          subtitle1: TextStyle(color: Colors.white), 
+        )
       ),
     home: LandingPage(),
     );
