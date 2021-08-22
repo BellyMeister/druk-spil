@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class MayerPage extends StatefulWidget {
@@ -64,6 +65,27 @@ class _MayerPageState extends State<MayerPage> {
       default:
     }
     return Scaffold(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          minimum: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Center(child: Text("Mayer", style: TextStyle(fontSize: 35))),
+              SizedBox(height: 60),
+              Center(child: 
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 80),
+                  child: Text(output, style: TextStyle(fontSize: 35)),
+                )
+              ),
+              Column(children: buttons),
+              players()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   void rollDice(){
     n1 = rng.nextInt(6) + 1;
