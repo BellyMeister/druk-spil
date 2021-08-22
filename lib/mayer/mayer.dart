@@ -145,6 +145,18 @@ class _MayerPageState extends State<MayerPage> {
     FocusNode _focusNode = FocusNode();
     return Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text("Gamere", style: TextStyle(color: Colors.grey)),
+              Container(width: 5),
+              Expanded(child: Divider(color: Colors.grey,height: 10)),
+              Icon(Icons.arrow_drop_down, color: Colors.grey)
+            ],
+          ),
+        ),
         Row(
           children: [
             Expanded(
