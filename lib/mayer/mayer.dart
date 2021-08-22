@@ -12,6 +12,46 @@ class _MayerPageState extends State<MayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
+  Widget playerWidget(Player player){
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Column(
+          children: [
+            Text(player.name),
+          ],
+        ),
+        Expanded(child: Container()),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
+                  onPressed: () {
+                    setState(() {
+                      if(player.nLives > 0) player.nLives -= 1;
+                    });
+                  }, 
+                ),
+                Text("${player.nLives}"),
+                IconButton(
+                  icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                  onPressed: () {
+                    setState(() {
+                      if(player.nLives < 6) player.nLives += 1;
+                    });
+                  }, 
+                ),
+              ]
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
   Widget _mayerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed}){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
