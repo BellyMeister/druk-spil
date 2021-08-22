@@ -211,15 +211,17 @@ class _MayerPageState extends State<MayerPage> {
             ),
           ],
         ),
-                      playersList.insert(0, Player(name: controller.text));
-                    });
-                    controller.clear();
-                    _focusNode.requestFocus();
-                  }
-                },
-              ),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            child: Text("Giv alle spillere fuldt liv"), 
+            style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+            onPressed: () {
+              setState(() {
+                playersList.forEach((p) => p.nLives = 6);
+              });
+            }, 
+          ),
         ),
         Column(children: widgets,)
       ],
