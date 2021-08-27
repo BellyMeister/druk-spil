@@ -38,7 +38,7 @@ class _MeyerPageState extends State<MeyerPage> {
             helperTextOutput = "\"Lille meyer\"";
             break;
           case "32":
-            helperTextOutput = "\"Fælles skål\" \n(Starter en ny runde)";
+            helperTextOutput = "\"Fælles skål\" \n(Starter en ny runde, ingen mister liv)";
             break;
           default:
             if (n1 == n2) {
@@ -49,7 +49,7 @@ class _MeyerPageState extends State<MeyerPage> {
         }
         buttons = [
           _meyerOutlinedButton(
-            topText: "Gem tallene", 
+            topText: "Skjul tallene", 
             bottomText: "Du har slået det samme eller over det du har modtaget", 
             suffix: Text("🔒"),
             onPressed: (){
@@ -58,7 +58,7 @@ class _MeyerPageState extends State<MeyerPage> {
             });
           }),
           _meyerOutlinedButton(
-            topText: "Gem tallene og rul igen",
+            topText: "Skjul tallene og rul igen",
             bottomText: "Du kunne ikke slå højere end det du har fået", 
             suffix: Text("🔒🎲"),
             onPressed: (){
@@ -80,6 +80,7 @@ class _MeyerPageState extends State<MeyerPage> {
         break;
       case States.hidden:
         output = "??";
+        helperTextOutput = "";
         buttons = [
           _meyerOutlinedButton(
             topText: "Vis tallene",
