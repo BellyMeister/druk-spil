@@ -199,7 +199,7 @@ class _MeyerPageState extends State<MeyerPage> {
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text('Jae', style: TextStyle(color: Theme.of(context).accentColor)),
+            child: Text('Ja', style: TextStyle(color: Theme.of(context).accentColor)),
           ),
         ],
       ),
