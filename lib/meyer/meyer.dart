@@ -128,7 +128,8 @@ class _MeyerPageState extends State<MeyerPage> {
         ];
         break;
     }
-
+    
+    // MAIN BUILD FUNCTION
     return WillPopScope(
       onWillPop: () => showExitPopup(),
       child: GestureDetector(
@@ -157,7 +158,7 @@ class _MeyerPageState extends State<MeyerPage> {
                           )
                         ),
                         Column(children: buttons),
-                        state == null || playersList.length > 0 ? players() : Container(),
+                        state == null || playersList.length > 0 ? playerListWidget() : Container(),
                       ],
                     ),
                   ),
@@ -222,6 +223,7 @@ class _MeyerPageState extends State<MeyerPage> {
       ),
     ) ?? false;
   }
+
   Future<bool> notEnoughPlayersWarning() async {
     return await showDialog(
       context: context, 
@@ -246,6 +248,7 @@ class _MeyerPageState extends State<MeyerPage> {
       )
     ) ?? false;
   }
+
   Widget _addPlayersWidget(List<Widget> playersWidget){
     return Padding(
 
@@ -282,17 +285,17 @@ class _MeyerPageState extends State<MeyerPage> {
     return Column(
       children: [
         ExpansionTile(
-            tilePadding: EdgeInsets.zero,
-            initiallyExpanded: true,
-            collapsedIconColor: Colors.grey,
-            title: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text("Gamere", style: TextStyle(color: Colors.grey)),
-                Container(width: 5),
-                Expanded(child: Divider(color: Colors.grey, height: 10)),
-              ],
-            ),
+          tilePadding: EdgeInsets.zero,
+          initiallyExpanded: true,
+          collapsedIconColor: Colors.grey,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text("Gamere", style: TextStyle(color: Colors.grey)),
+              Container(width: 5),
+              Expanded(child: Divider(color: Colors.grey, height: 10)),
+            ],
+          ),
           children: [
             Column(children: playersWidget),
             Padding(
@@ -308,14 +311,13 @@ class _MeyerPageState extends State<MeyerPage> {
               ),
             ),
           ]
-          ,
-      ),
+        ),
       ],
     );
   }
 
-  Widget players(){
-    List<Widget> playersWidget = playersList.map((e) => playerWidget(e)).toList();
+  Widget playerListWidget(){
+    List<Widget> playersWidget = playersList.map((e) => individualPlayerWidget(e)).toList();
     
     return Padding(
       padding: const EdgeInsets.only(top: 15),
@@ -323,7 +325,7 @@ class _MeyerPageState extends State<MeyerPage> {
     );
   }
 
-  Widget playerWidget(Player player){
+  Widget individualPlayerWidget(Player player){
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -396,6 +398,7 @@ class _MeyerPageState extends State<MeyerPage> {
     );
   }
 }
+
 enum States{
   shown,
   hidden,
