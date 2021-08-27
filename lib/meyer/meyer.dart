@@ -205,7 +205,7 @@ class _MeyerPageState extends State<MeyerPage> {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: Theme.of(context).accentColor, width: 2)
+          side: BorderSide(color: Colors.white, width: 2)
         ),
         backgroundColor: Theme.of(context).primaryColor,
         title: Text('Er du sikker?'),
@@ -231,7 +231,7 @@ class _MeyerPageState extends State<MeyerPage> {
         backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: Theme.of(context).accentColor, width: 2)
+          side: BorderSide(color: Colors.white, width: 2)
         ),
         title: Text("Ikke nok spillere"),
         content: Text("Sikker på du vil fortsætte til spillet?\nDu kan ikke tilføje flere spillere når spillet er i gang"),
