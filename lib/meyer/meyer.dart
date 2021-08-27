@@ -246,15 +246,43 @@ class _MeyerPageState extends State<MeyerPage> {
       )
     ) ?? false;
   }
-
-  Widget players(){
-    List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
-
+  Widget _addPlayersWidget(List<Widget> playersWidget){
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+
+
+      padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          ExpansionTile(
+          TextField(
+            maxLines: 1,
+            style: TextStyle(color: Colors.white),
+            textCapitalization: TextCapitalization.sentences,
+            cursorColor: Theme.of(context).accentColor,
+            decoration: InputDecoration(
+              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+              hintText: "Tryk for at tilføje spiller",
+              hintStyle: TextStyle(color: Colors.grey),
+              fillColor: Colors.white,
+              suffix: IconButton(
+                icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                onPressed: () => addPlayer(),
+              )
+            ),
+            controller: controller,
+            focusNode: focusNode,
+            onSubmitted: (_) => addPlayer(),
+          ),
+        Column(children: playersWidget)
+      ]),
+    );
+  }
+
+  Widget _healPlayersWidget(List<Widget> playersWidget){
+    return Column(
+      children: [
+        ExpansionTile(
+            tilePadding: EdgeInsets.zero,
             initiallyExpanded: true,
             collapsedIconColor: Colors.grey,
             title: Row(
@@ -265,50 +293,33 @@ class _MeyerPageState extends State<MeyerPage> {
                 Expanded(child: Divider(color: Colors.grey, height: 10)),
               ],
             ),
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      maxLines: 1,
-                      style: TextStyle(color: Colors.white),
-                      textCapitalization: TextCapitalization.sentences,
-                      cursorColor: Theme.of(context).accentColor,
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
-                        hintText: "Tryk for at tilføje spiller",
-                        hintStyle: TextStyle(color: Colors.grey),
-                        fillColor: Colors.white,
-                        suffix: IconButton(
-                          icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-                          onPressed: () => addPlayer(),
-                        )
-                      ),
-                      controller: controller,
-                      focusNode: focusNode,
-                      onSubmitted: (_) => addPlayer(),
-                    ),
-                  ),
-                ],
+          children: [
+            Column(children: playersWidget),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                child: Text("Giv alle spillere fuldt liv"), 
+                style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+                onPressed: () {
+                  setState(() {
+                    playersList.forEach((p) => p.nLives = 6);
+                  });
+                }, 
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  child: Text("Giv alle spillere fuldt liv"), 
-                  style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
-                  onPressed: () {
-                    setState(() {
-                      playersList.forEach((p) => p.nLives = 6);
-                    });
-                  }, 
-                ),
-              ),
-              Column(children: widgets,)
-            ],
-          ),
-          
-        ],
+            ),
+          ]
+          ,
       ),
+      ],
+    );
+  }
+
+  Widget players(){
+    List<Widget> playersWidget = playersList.map((e) => playerWidget(e)).toList();
+    
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: state == null ? _addPlayersWidget(playersWidget) : _healPlayersWidget(playersWidget)
     );
   }
 
@@ -316,44 +327,48 @@ class _MeyerPageState extends State<MeyerPage> {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Column(
-          children: [
-            Text(player.name),
-          ],
-        ),
-        Expanded(child: Container()),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
-                  onPressed: () {
-                    setState(() {
-                      if(player.nLives > 0) player.nLives -= 1;
-                      if(player.nLives == 0){
-                        setState(() {
-                          playersList.remove(player);
-                          playersList.add(player);
-                        });
-                      } 
-                    });
-                  }, 
-                ),
-                Text("${player.nLives}"),
-                IconButton(
-                  icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-                  onPressed: () {
-                    setState(() {
-                      if(player.nLives < 6) player.nLives += 1;
-                    });
-                  }, 
-                ),
-              ]
-            ),
-          ],
+        state == null ? Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            icon: Icon(Icons.close, color: Theme.of(context).accentColor),
+            onPressed: () {
+              setState(() {
+                playersList.remove(player);
+              });
+            }
+          ),
         )
+        : Container(),
+        Text(player.name),
+        Expanded(child: Container()),
+        state != null ? Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
+              onPressed: () {
+                setState(() {
+                  if(player.nLives > 0) player.nLives -= 1;
+                  if(player.nLives == 0){
+                    setState(() {
+                      playersList.remove(player);
+                      playersList.add(player);
+                    });
+                  } 
+                });
+              }, 
+            ),
+            Text("${player.nLives}"),
+            IconButton(
+              icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+              onPressed: () {
+                setState(() {
+                  if(player.nLives < 6) player.nLives += 1;
+                });
+              }, 
+            ),
+          ]
+        ) : Container()
       ],
     );
   }
