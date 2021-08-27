@@ -12,15 +12,12 @@ class CustomOutlinedButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: OutlinedButton(
-        style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)),
-          backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          side: MaterialStateProperty.all<BorderSide>(BorderSide(color: Theme.of(context).accentColor, width: 4)),
-          textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(fontSize: 20)),
-          
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size(double.infinity, 50),
+          backgroundColor: Theme.of(context).primaryColor,
+          side: BorderSide(color: Theme.of(context).accentColor, width: 4),
         ),
-        child: Text(text),
+        child: Text(text, style: TextStyle(fontSize: 20, color: Colors.white)),
         onPressed: onPressed,
       ),
     );
