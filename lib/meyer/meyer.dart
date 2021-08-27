@@ -102,23 +102,49 @@ class _MeyerPageState extends State<MeyerPage> {
       child: GestureDetector(
         onTap: () => focusNode.unfocus(),
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: SafeArea(
-              minimum: EdgeInsets.all(15),
-              child: Column(
-                children: [
-                  Center(child: Text("Meyer", style: TextStyle(fontSize: 35))),
-                  SizedBox(height: 60),
-                  Center(child: 
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 80),
-                      child: Text(output, style: TextStyle(fontSize: 35)),
-                    )
+          body: SafeArea(
+            child: CustomScrollView(
+              physics: ClampingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        Center(child: Text("Meyer", style: TextStyle(fontSize: 35))),
+                        SizedBox(height: 60),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 80),
+                            child: Column(
+                              children: [
+                                Text(output, style: TextStyle(fontSize: 35)),
+                                Text(helperTextOutput, textAlign: TextAlign.center,)
+                              ],
+                            ),
+                          )
+                        ),
+                        Column(children: buttons),
+                        players(),
+                      ],
+                    ),
                   ),
-                  Column(children: buttons),
-                  players(),
-                ],
-              ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  fillOverscroll: true,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: CustomOutlinedButton(
+                      text: "Tilbage til hovedmenuen",
+                      onPressed: () async {
+                      if (await showExitPopup()) {
+                        Navigator.of(context).pop();
+                      }
+                    }),
+                  ),
+                )
+              ],
             ),
           ),
         ),
