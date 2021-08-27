@@ -165,59 +165,69 @@ class _MeyerPageState extends State<MeyerPage> {
   Widget players(){
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Column(
+        children: [
+          ExpansionTile(
+            initiallyExpanded: true,
+            collapsedIconColor: Colors.grey,
+            title: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text("Gamere", style: TextStyle(color: Colors.grey)),
+                Container(width: 5),
+                Expanded(child: Divider(color: Colors.grey, height: 10)),
+              ],
+            ),
             children: [
-              Text("Gamere", style: TextStyle(color: Colors.grey)),
-              Container(width: 5),
-              Expanded(child: Divider(color: Colors.grey,height: 10)),
-              Icon(Icons.arrow_drop_down, color: Colors.grey)
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.white),
+                      textCapitalization: TextCapitalization.sentences,
+                      cursorColor: Theme.of(context).accentColor,
+                      decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+                        hintText: "Tryk for at tilføje spiller",
+                        hintStyle: TextStyle(color: Colors.grey),
+                        fillColor: Colors.white,
+                        suffix: IconButton(
+                          icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                          onPressed: () => addPlayer(),
+                        )
+                      ),
+                      controller: controller,
+                      focusNode: focusNode,
+                      onSubmitted: (_) => addPlayer(),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  child: Text("Giv alle spillere fuldt liv"), 
+            child: Text("Giv alle spillere fuldt liv"), 
+                  child: Text("Giv alle spillere fuldt liv"), 
+                  style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+                  onPressed: () {
+                    setState(() {
+                      playersList.forEach((p) => p.nLives = 6);
+                    });
+                  }, 
+            }, 
+                  }, 
+                ),
+              ),
+              Column(children: widgets,)
             ],
           ),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: TextField(
-                maxLines: 1,
-                style: TextStyle(color: Colors.white),
-                textCapitalization: TextCapitalization.sentences,
-                cursorColor: Theme.of(context).accentColor,
-                decoration: InputDecoration(
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
-                  hintText: "Tryk for at tilføje spiller",
-                  hintStyle: TextStyle(color: Colors.grey),
-                  fillColor: Colors.white,
-                  suffix: IconButton(
-                    icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-                    onPressed: () => addPlayer(),
-                  )
-                ),
-                controller: controller,
-                focusNode: focusNode,
-                onSubmitted: (_) => addPlayer(),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            child: Text("Giv alle spillere fuldt liv"), 
-            style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
-            onPressed: () {
-              setState(() {
-                playersList.forEach((p) => p.nLives = 6);
-              });
-            }, 
-          ),
-        ),
-        Column(children: widgets,)
-      ],
+          
+        ],
+      ),
     );
   }
 
