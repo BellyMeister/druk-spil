@@ -15,6 +15,7 @@ class _MeyerPageState extends State<MeyerPage> {
   int n1 = 0;
   int n2 = 0;
   String output = "00";
+  String helperTextOutput = "";
   List<Widget> buttons = [];
   States? state;
   List<Player> playersList = [];
@@ -29,6 +30,23 @@ class _MeyerPageState extends State<MeyerPage> {
     switch (state) {
       case States.shown:
         output = n2 > n1 ? "$n2$n1" : "$n1$n2";
+        switch (output) {
+          case "21":
+            helperTextOutput = "\"Meyer\"";
+            break;
+          case "31":
+            helperTextOutput = "\"Lille meyer\"";
+            break;
+          case "32":
+            helperTextOutput = "\"Fælles skål\" \n(Starter en ny runde)";
+            break;
+          default:
+            if (n1 == n2) {
+              helperTextOutput = "\"Par $n1\"";
+            } else {
+              helperTextOutput = "";
+            }
+        }
         buttons = [
           _meyerOutlinedButton(
             topText: "Gem tallene", 
