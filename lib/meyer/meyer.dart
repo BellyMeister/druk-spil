@@ -105,13 +105,26 @@ class _MeyerPageState extends State<MeyerPage> {
         break;
       default:
         buttons = [
-          CustomOutlinedButton(text: "Stik mig nogle tal", onPressed: () {
-            rollDice();
-            setState(() {
-              output = "00";
-              state = States.shown;
-            });
-          })
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50),
+                primary: Theme.of(context).accentColor,
+                textStyle: TextStyle(fontSize: 20, color: Colors.white)
+              ),
+              child: Text("Stik mig nogle tal"), 
+              onPressed: () async {
+                if (playersList.length > 1 || await notEnoughPlayersWarning()) {
+                  rollDice();
+                  setState(() {
+                    output = "00";
+                    state = States.shown;
+                  });
+                }
+              }
+            ),
+          )
         ];
         break;
     }
