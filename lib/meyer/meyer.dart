@@ -202,6 +202,10 @@ class _MeyerPageState extends State<MeyerPage> {
     return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Theme.of(context).accentColor, width: 2)
+        ),
         backgroundColor: Theme.of(context).primaryColor,
         title: Text('Er du sikker?'),
         content: Text('Spillet vil blive nulstillet. Alle navne og liv skal tilføjes forfra.'),
