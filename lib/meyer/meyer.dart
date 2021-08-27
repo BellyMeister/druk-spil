@@ -200,6 +200,7 @@ class _MeyerPageState extends State<MeyerPage> {
   }
 
   Future<bool> showExitPopup() async {
+    if(playersList.length == 0 && state == null) return true;
     return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
