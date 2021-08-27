@@ -157,7 +157,7 @@ class _MeyerPageState extends State<MeyerPage> {
                           )
                         ),
                         Column(children: buttons),
-                        players(),
+                        state == null || playersList.length > 0 ? players() : Container(),
                       ],
                     ),
                   ),
