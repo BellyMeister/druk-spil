@@ -3,14 +3,14 @@ import 'package:druk_spil/components/outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MayerPage extends StatefulWidget {
-  const MayerPage({ Key? key }) : super(key: key);
+class MeyerPage extends StatefulWidget {
+  const MeyerPage({ Key? key }) : super(key: key);
 
   @override
-  _MayerPageState createState() => _MayerPageState();
+  _MeyerPageState createState() => _MeyerPageState();
 }
 
-class _MayerPageState extends State<MayerPage> {
+class _MeyerPageState extends State<MeyerPage> {
   Random rng = Random();
   int n1 = 0;
   int n2 = 0;
@@ -30,7 +30,7 @@ class _MayerPageState extends State<MayerPage> {
       case States.shown:
         output = n2 > n1 ? "$n2$n1" : "$n1$n2";
         buttons = [
-          _mayerOutlinedButton(
+          _meyerOutlinedButton(
             topText: "Gem tallene", 
             bottomText: "Du har slået det samme eller over det du har modtaget", 
             suffix: Text("🔒"),
@@ -39,7 +39,7 @@ class _MayerPageState extends State<MayerPage> {
               state = States.hidden;
             });
           }),
-          _mayerOutlinedButton(
+          _meyerOutlinedButton(
             topText: "Gem tallene og rul igen",
             bottomText: "Du kunne ikke slå højere end det du har fået", 
             suffix: Text("🔒🎲"),
@@ -49,7 +49,7 @@ class _MayerPageState extends State<MayerPage> {
               state = States.hidden;
             });
           }),
-          _mayerOutlinedButton(
+          _meyerOutlinedButton(
             topText: "Rul igen",
             bottomText: "Der var nogen som drak, og nu starter en ny runde", 
             suffix: Text("🎲"),
@@ -63,7 +63,7 @@ class _MayerPageState extends State<MayerPage> {
       case States.hidden:
         output = "??";
         buttons = [
-          _mayerOutlinedButton(
+          _meyerOutlinedButton(
             topText: "Vis tallene",
             bottomText: "Du tror ikke på ham", 
             suffix: Text("👀"),
@@ -72,7 +72,7 @@ class _MayerPageState extends State<MayerPage> {
               state = States.shown;
             });
           }),
-          _mayerOutlinedButton(
+          _meyerOutlinedButton(
             topText: "Rul igen og vis tallene", 
             bottomText: "Du tror på ham / du kan slå højere", 
             suffix: Text("🎲👀"),
@@ -107,7 +107,7 @@ class _MayerPageState extends State<MayerPage> {
               minimum: EdgeInsets.all(15),
               child: Column(
                 children: [
-                  Center(child: Text("Mayer", style: TextStyle(fontSize: 35))),
+                  Center(child: Text("Meyer", style: TextStyle(fontSize: 35))),
                   SizedBox(height: 60),
                   Center(child: 
                     Padding(
@@ -267,7 +267,7 @@ class _MayerPageState extends State<MayerPage> {
     );
   }
 
-  Widget _mayerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed, Widget? suffix}){
+  Widget _meyerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed, Widget? suffix}){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: OutlinedButton(

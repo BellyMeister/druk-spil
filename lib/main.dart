@@ -1,5 +1,5 @@
 import 'package:druk_spil/components/outlined_button.dart';
-import 'package:druk_spil/mayer/mayer.dart';
+import 'package:druk_spil/meyer/meyer.dart';
 import 'extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -51,10 +51,10 @@ class _LandingPageState extends State<LandingPage> {
                 child: Text("øl.", style: TextStyle(fontSize: 35)),
               ),
               SizedBox(height: 100),
-              CustomOutlinedButton(text: "Mayer", onPressed: () {
+              CustomOutlinedButton(text: "Meyer", onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MayerPage())
+                  MaterialPageRoute(builder: (context) => MeyerPage())
                 );
               })
             ],
