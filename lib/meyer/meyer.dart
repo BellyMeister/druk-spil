@@ -222,6 +222,30 @@ class _MeyerPageState extends State<MeyerPage> {
       ),
     ) ?? false;
   }
+  Future<bool> notEnoughPlayersWarning() async {
+    return await showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Theme.of(context).accentColor, width: 2)
+        ),
+        title: Text("Ikke nok spillere"),
+        content: Text("Sikker på du vil fortsætte til spillet?\nDu kan ikke tilføje flere spillere når spillet er i gang"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text('Naj', style: TextStyle(color: Theme.of(context).accentColor)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text('Ja', style: TextStyle(color: Theme.of(context).accentColor)),
+          ),
+        ],
+      )
+    ) ?? false;
+  }
 
   Widget players(){
     List<Widget> widgets = playersList.map((e) => playerWidget(e)).toList();
