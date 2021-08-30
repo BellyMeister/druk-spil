@@ -1,5 +1,6 @@
 import 'package:druk_spil/components/outlined_button.dart';
 import 'package:druk_spil/meyer/meyer.dart';
+import 'package:flutter/services.dart';
 import 'extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,11 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-
+  @override
+  void initState(){
+    super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
