@@ -9,15 +9,17 @@ void main() {
 }
 
 class App extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Druk Spil',
       theme: ThemeData(
-        primaryColor: HexColor.fromHex("#0D0106"),
+        primaryColor: HexColor.fromHex("#202020"),
         accentColor: HexColor.fromHex("#ED217C"),
         backgroundColor: HexColor.fromHex("#0D0106"),
-        scaffoldBackgroundColor: HexColor.fromHex("#0D0106"),
+        scaffoldBackgroundColor: HexColor.fromHex("#202020"),
+        dialogBackgroundColor: HexColor.fromHex("#202020"),
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Colors.white), 
           button: TextStyle(color: Colors.white),

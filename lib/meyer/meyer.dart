@@ -197,11 +197,6 @@ class _MeyerPageState extends State<MeyerPage> {
     return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: Colors.white, width: 2)
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
         title: Text('Er du sikker?'),
         content: Text('Spillet vil blive nulstillet. Alle navne og liv skal tilføjes forfra.'),
         actions:[
@@ -222,11 +217,6 @@ class _MeyerPageState extends State<MeyerPage> {
     return await showDialog(
       context: context, 
       builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: Colors.white, width: 2)
-        ),
         title: Text("Ikke nok spillere"),
         content: Text("Sikker på du vil fortsætte til spillet?\nDu kan ikke tilføje flere spillere når spillet er i gang"),
         actions: [
@@ -372,18 +362,18 @@ class _MeyerPageState extends State<MeyerPage> {
   Widget _meyerOutlinedButton({String topText = "", String bottomText = "", required GestureTapCallback onPressed, Widget? suffix}){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          primary: Theme.of(context).accentColor,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Theme.of(context).primaryColor,
           minimumSize: Size(double.infinity, 75),
-          backgroundColor: Theme.of(context).primaryColor,
-          side: BorderSide(color: Theme.of(context).accentColor, width: 4),
+          onPrimary: Theme.of(context).accentColor,
+          side: BorderSide(color: Theme.of(context).accentColor),
           textStyle: TextStyle(fontSize: 20),
         ),
         child: SafeArea(
           child: ListTile(
-            title: Text(topText, style: TextStyle(color: Colors.white)),
-            subtitle: Text(bottomText, style: TextStyle(color: Colors.grey)),
+            title: Text(topText, style: TextStyle(color: Theme.of(context).accentColor)),
+            subtitle: Text(bottomText, style: TextStyle(color: Colors.white)),
             trailing: suffix,
           ),
         ),
