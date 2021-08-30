@@ -42,14 +42,16 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("øl.", style: TextStyle(fontSize: 35)),
+        centerTitle: true,
+        shadowColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           minimum: EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              Center(
-                child: Text("øl.", style: TextStyle(fontSize: 35)),
-              ),
               SizedBox(height: 100),
               CustomOutlinedButton(text: "Meyer", onPressed: () {
                 Navigator.push(

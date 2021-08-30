@@ -140,11 +140,17 @@ class _MeyerPageState extends State<MeyerPage> {
               physics: ClampingScrollPhysics(),
               slivers: [
                 SliverToBoxAdapter(
+                  child: AppBar(
+                    title: Text("Meyer", style: TextStyle(fontSize: 35)),
+                    centerTitle: true,
+                    shadowColor: Colors.transparent,
+                  ),
+                ),
+                SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(15),
                     child: Column(
                       children: [
-                        Center(child: Text("Meyer", style: TextStyle(fontSize: 35))),
                         SizedBox(height: 60),
                         Center(
                           child: Padding(
@@ -163,19 +169,6 @@ class _MeyerPageState extends State<MeyerPage> {
                     ),
                   ),
                 ),
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: CustomOutlinedButton(
-                      text: "Tilbage til hovedmenuen",
-                      onPressed: () async {
-                      if (await showExitPopup()) {
-                        Navigator.of(context).pop();
-                      }
-                    }),
-                  ),
-                )
               ],
             ),
           ),
