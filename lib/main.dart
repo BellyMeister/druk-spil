@@ -1,4 +1,4 @@
-import 'package:druk_spil/components/outlined_button.dart';
+import 'package:druk_spil/components/elevated_button.dart';
 import 'package:druk_spil/meyer/meyer.dart';
 import 'package:flutter/services.dart';
 import 'extensions.dart';
@@ -60,7 +60,7 @@ class _LandingPageState extends State<LandingPage> {
           child: Column(
             children: [
               SizedBox(height: 100),
-              CustomOutlinedButton(text: "Meyer", onPressed: () {
+              CustomElevatedButton(text: "Meyer", onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MeyerPage())
