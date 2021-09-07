@@ -159,7 +159,7 @@ class _MeyerPageState extends State<MeyerPage> {
                             padding: const EdgeInsets.only(bottom: 80),
                             child: Column(
                               children: [
-                                Text(output, style: TextStyle(fontSize: 35)),
+                                Text(output, style: TextStyle(fontSize: 80)),
                                 Text(helperTextOutput, textAlign: TextAlign.center,)
                               ],
                             ),
