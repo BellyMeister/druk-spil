@@ -289,7 +289,10 @@ class _MeyerPageState extends State<MeyerPage> {
                 style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
                 onPressed: () {
                   setState(() {
-                    playersList.forEach((p) => p.nLives = 6);
+                    playersList.forEach((p) {
+                      p.nLives = 6;
+                      p.hasRerolled = false;
+                    });
                   });
                 }, 
               ),
@@ -352,6 +355,22 @@ class _MeyerPageState extends State<MeyerPage> {
                 });
               }, 
             ),
+            GestureDetector(
+              child: Icon(Icons.change_circle, color: !player.hasRerolled ? Theme.of(context).accentColor : Colors.grey),
+                onTap: () {
+                  if(!player.hasRerolled) {
+                    setState(() {
+                      player.nLives = rng.nextInt(6) + 1;
+                      player.hasRerolled = true;
+                    });
+                  }
+                },
+                onLongPress: () {
+                  setState(() {
+                    player.hasRerolled = false;
+                  });
+                }, 
+            ),
           ]
         ) : Container()
       ],
@@ -390,6 +409,7 @@ enum States{
 class Player {
   final String name;
   int nLives = 6;
+  bool hasRerolled = false;
 
   Player({required this.name});
 }
