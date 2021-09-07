@@ -326,8 +326,7 @@ class _MeyerPageState extends State<MeyerPage> {
           ),
         )
         : Container(),
-        Text(player.name),
-        Expanded(child: Container()),
+        Expanded(child: Text(player.name, overflow: TextOverflow.ellipsis)),
         state != null ? Row(
           children: [
             IconButton(
