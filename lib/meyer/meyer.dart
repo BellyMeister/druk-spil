@@ -71,10 +71,13 @@ class _MeyerPageState extends State<MeyerPage> {
             bottomText: "Der var nogen som drak, og nu starter en ny runde", 
             suffix: Text("🎲"),
             onPressed: (){
-            setState(() {
-              rollDice();
-            });
-          })
+              String tmp = output;
+              while (output == (n2 > n1 ? "$n2$n1" : "$n1$n2")) rollDice();
+              setState(() {
+                output = tmp;
+              });
+            }
+          )
         ];
         break;
       case States.hidden:
