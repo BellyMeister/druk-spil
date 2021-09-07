@@ -285,8 +285,11 @@ class _MeyerPageState extends State<MeyerPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                child: Text("Giv alle spillere fuldt liv"), 
-                style: ElevatedButton.styleFrom(primary: Theme.of(context).accentColor),
+                child: Text("Giv alle spillere fuldt liv", style: TextStyle(color: Theme.of(context).accentColor),), 
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor,
+                  side: BorderSide(color: Theme.of(context).accentColor)
+                ),
                 onPressed: () {
                   setState(() {
                     playersList.forEach((p) {
