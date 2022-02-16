@@ -16,10 +16,16 @@ class App extends StatelessWidget {
       title: 'Druk Spil',
       theme: ThemeData(
         primaryColor: HexColor.fromHex("#202020"),
-        accentColor: HexColor.fromHex("#ED217C"),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0
+        ),
         backgroundColor: HexColor.fromHex("#0D0106"),
         scaffoldBackgroundColor: HexColor.fromHex("#202020"),
         dialogBackgroundColor: HexColor.fromHex("#202020"),
+        colorScheme: ColorScheme.dark().copyWith(
+          secondary: HexColor.fromHex("#ED217C")
+        ),
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Colors.white), 
           button: TextStyle(color: Colors.white),

@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MeyerPage extends StatefulWidget {
   const MeyerPage({ Key? key }) : super(key: key);
@@ -112,7 +111,7 @@ class _MeyerPageState extends State<MeyerPage> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 50),
-                primary: Theme.of(context).accentColor,
+                primary: Theme.of(context).colorScheme.secondary,
                 textStyle: TextStyle(fontSize: 20, color: Colors.white)
               ),
               child: Text("Stik mig nogle tal"), 
@@ -204,11 +203,11 @@ class _MeyerPageState extends State<MeyerPage> {
         actions:[
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Naj', style: TextStyle(color: Theme.of(context).accentColor)),
+            child: Text('Naj', style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text('Ja', style: TextStyle(color: Theme.of(context).accentColor)),
+            child: Text('Ja', style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
           ),
         ],
       ),
@@ -224,11 +223,11 @@ class _MeyerPageState extends State<MeyerPage> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Naj', style: TextStyle(color: Theme.of(context).accentColor)),
+            child: Text('Naj', style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: Text('Ja', style: TextStyle(color: Theme.of(context).accentColor)),
+            child: Text('Ja', style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
           ),
         ],
       )
@@ -247,14 +246,14 @@ class _MeyerPageState extends State<MeyerPage> {
             maxLines: 1,
             style: TextStyle(color: Colors.white),
             textCapitalization: TextCapitalization.sentences,
-            cursorColor: Theme.of(context).accentColor,
+            cursorColor: Theme.of(context).colorScheme.secondary,
             decoration: InputDecoration(
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary)),
               hintText: "Tryk for at tilføje spiller",
               hintStyle: TextStyle(color: Colors.grey),
               fillColor: Colors.white,
               suffix: IconButton(
-                icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                icon: Icon(Icons.add, color: Theme.of(context).colorScheme.secondary),
                 onPressed: () => addPlayer(),
               )
             ),
@@ -287,10 +286,10 @@ class _MeyerPageState extends State<MeyerPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                child: Text("Giv alle spillere fuldt liv", style: TextStyle(color: Theme.of(context).accentColor),), 
+                child: Text("Giv alle spillere fuldt liv", style: TextStyle(color: Theme.of(context).colorScheme.secondary),), 
                 style: ElevatedButton.styleFrom(
                   primary: Theme.of(context).primaryColor,
-                  side: BorderSide(color: Theme.of(context).accentColor)
+                  side: BorderSide(color: Theme.of(context).colorScheme.secondary)
                 ),
                 onPressed: () {
                   setState(() {
@@ -325,7 +324,7 @@ class _MeyerPageState extends State<MeyerPage> {
           padding: const EdgeInsets.only(right: 8),
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: Icon(Icons.close, color: Theme.of(context).accentColor),
+            icon: Icon(Icons.close, color: Theme.of(context).colorScheme.secondary),
             onPressed: () {
               setState(() {
                 playersList.remove(player);
@@ -338,7 +337,7 @@ class _MeyerPageState extends State<MeyerPage> {
         state != null ? Row(
           children: [
             IconButton(
-              icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
+              icon: Icon(Icons.remove, color: Theme.of(context).colorScheme.secondary),
               onPressed: () {
                 setState(() {
                   if(player.nLives > 0) player.nLives -= 1;
@@ -353,7 +352,7 @@ class _MeyerPageState extends State<MeyerPage> {
             ),
             Text("${player.nLives}"),
             IconButton(
-              icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+              icon: Icon(Icons.add, color: Theme.of(context).colorScheme.secondary),
               onPressed: () {
                 setState(() {
                   if(player.nLives < 6) player.nLives += 1;
@@ -361,7 +360,7 @@ class _MeyerPageState extends State<MeyerPage> {
               }, 
             ),
             GestureDetector(
-              child: Icon(Icons.change_circle, color: !player.hasRerolled ? Theme.of(context).accentColor : Colors.grey),
+              child: Icon(Icons.change_circle, color: !player.hasRerolled ? Theme.of(context).colorScheme.secondary : Colors.grey),
                 onTap: () {
                   if(!player.hasRerolled) {
                     setState(() {
@@ -389,13 +388,13 @@ class _MeyerPageState extends State<MeyerPage> {
         style: ElevatedButton.styleFrom(
           primary: Theme.of(context).primaryColor,
           minimumSize: Size(double.infinity, 75),
-          onPrimary: Theme.of(context).accentColor,
-          side: BorderSide(color: Theme.of(context).accentColor),
+          onPrimary: Theme.of(context).colorScheme.secondary,
+          side: BorderSide(color: Theme.of(context).colorScheme.secondary),
           textStyle: TextStyle(fontSize: 20),
         ),
         child: SafeArea(
           child: ListTile(
-            title: Text(topText, style: TextStyle(color: Theme.of(context).accentColor)),
+            title: Text(topText, style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
             subtitle: Text(bottomText, style: TextStyle(color: Colors.white)),
             trailing: suffix,
           ),
