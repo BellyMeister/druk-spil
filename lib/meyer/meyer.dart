@@ -273,6 +273,7 @@ class _MeyerPageState extends State<MeyerPage> {
           tilePadding: EdgeInsets.zero,
           initiallyExpanded: true,
           collapsedIconColor: Colors.grey,
+          iconColor: Theme.of(context).colorScheme.secondary,
           title: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
